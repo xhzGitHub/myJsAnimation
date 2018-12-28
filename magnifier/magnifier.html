@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="magnifier.css">
+</head>
+<body>
+    <div class="min">
+        <img src="../img/focus-min.jpg" alt="">
+        <div class="cover"></div>
+    </div>
+    <div class="max">
+        <img src="../img/focus.jpg" alt="">
+    </div>
+
+    <script>
+        var max = document.getElementsByClassName('max')[0],
+            maxImg = document.getElementsByTagName('img')[1],
+            cover = document.getElementsByClassName('cover')[0],
+            min = document.getElementsByClassName('min')[0];
+        
+        min.onmouseenter = function () {
+            max.style.display = 'block';
+            cover.style.display = 'block';
+        }
+
+        min.onmouseleave = function () {
+            max.style.display = 'none';
+            cover.style.display = 'none';
+        }
+        
+        min.onmousemove = function (e) {
+
+            var cover_width = cover.offsetWidth / 2,
+                cover_height = cover.offsetHeight / 2,
+                x = e.clientX - min.offsetLeft - cover_width,
+                y = e.clientY - min.offsetTop - cover_height;
+
+            if(x > (400 - cover_width * 2)){
+                x = 400 - cover_width * 2;
+            }else if(x < 0){
+                x = 0;
+            }
+
+            if(y > (350 - cover_height * 2)){
+                y = 350 - cover_width * 2;
+            }else if(y < 0){
+                y = 0;
+            }
+
+            cover.style.left = x + 'px';
+            cover.style.top = y + 'px';
+
+            var max_x = maxImg.offsetWidth / min.offsetWidth * x,
+                max_y = maxImg.offsetHeight / min.offsetHeight * y;
+
+            maxImg.style.left = -max_x + 'px';
+            maxImg.style.top = -max_y + 'px';
+
+        }
+    </script>
+</body>
+</html>

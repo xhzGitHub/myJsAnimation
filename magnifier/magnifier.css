@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.min{
+    width: 400px;
+    height: 350px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+.min img{
+    width: 100%;
+    position: relative;
+}
+
+.cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    background-image: url('../img/cover.png');
+    display: none;
+    opacity: 0.4;
+}
+
+.max{
+    width: 400px;
+    height: 350px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    float: left;
+    position: relative;
+    display: none;
+}
+
+.max img{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
