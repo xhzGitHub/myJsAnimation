@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="clock.css">
 </head>
 <body>
+    <!--黑底-->
     <div class="wrapper">
+        <!--表盘-->
         <div class="clock">
+            <!--装载数字的ul-->
             <ul class="num-box"></ul>
+            <!--圆心-->
             <div class="radio"></div>
+            <!--时针-->
             <div class="hour"></div>
+            <!--分针-->
             <div class="minute"></div>
+            <!--秒针-->
             <div class="second"></div>
         </div>
     </div>
@@ -41,6 +48,7 @@
             minute = document.getElementsByClassName('minute')[0],
             second = document.getElementsByClassName('second')[0],
             date = new Date(),
+            //获取当前时间，且小时需要加上分钟数与秒数
             h = date.getHours(),
             m = date.getMinutes(),
             s = date.getSeconds();
@@ -49,7 +57,7 @@
             minute.style.transform = 'rotate('+ m / 60 * 360 + 'deg)';
             second.style.transform = 'rotate('+ s / 60 * 360 + 'deg)';
 
-
+        // 设置定时器，实时旋转
         var time = setInterval(function () {
             date = new Date();
             h = date.getHours();

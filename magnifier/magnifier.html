@@ -6,10 +6,13 @@
     <link rel="stylesheet" href="magnifier.css">
 </head>
 <body>
+    <!--小图-->
     <div class="min">
         <img src="../img/focus-min.jpg" alt="">
+        <!--指针覆盖的蓝色区域-->
         <div class="cover"></div>
     </div>
+    <!--大图-->
     <div class="max">
         <img src="../img/focus.jpg" alt="">
     </div>
@@ -19,17 +22,20 @@
             maxImg = document.getElementsByTagName('img')[1],
             cover = document.getElementsByClassName('cover')[0],
             min = document.getElementsByClassName('min')[0];
-        
+
+        // 当鼠标进入时，大图和cover显示
         min.onmouseenter = function () {
             max.style.display = 'block';
             cover.style.display = 'block';
         }
 
+        // 当鼠标离开时，大图和cover隐藏
         min.onmouseleave = function () {
             max.style.display = 'none';
             cover.style.display = 'none';
         }
-        
+
+        // 鼠标移动事件
         min.onmousemove = function (e) {
 
             var cover_width = cover.offsetWidth / 2,
@@ -37,21 +43,24 @@
                 x = e.clientX - min.offsetLeft - cover_width,
                 y = e.clientY - min.offsetTop - cover_height;
 
+            // 当鼠标移动到小图外时，设置临界区域
             if(x > (400 - cover_width * 2)){
                 x = 400 - cover_width * 2;
             }else if(x < 0){
                 x = 0;
             }
 
+            // 当鼠标移动到小图外时，设置临界区域
             if(y > (350 - cover_height * 2)){
                 y = 350 - cover_width * 2;
             }else if(y < 0){
                 y = 0;
             }
-
+            // 设置cover的定位，cover的位置应该随指针移动而移动
             cover.style.left = x + 'px';
             cover.style.top = y + 'px';
 
+            // 设置大图的定位，大图移动的距离应该与指针的移动距离相反
             var max_x = maxImg.offsetWidth / min.offsetWidth * x,
                 max_y = maxImg.offsetHeight / min.offsetHeight * y;
 
