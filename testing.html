@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>用户注册页面</div>
+    <div>
+        <div><input type="text" name="code" onblur="ver()"></div>
+        <div id="myDiv"></div>
+    </div>
+    <script>
+        // var xmlhttp;
+        // if(window.XMLHttpRequest){
+        //     xmlhttp = new XMLHttpRequest();
+        // }else{
+        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        // }
+        var req = null;
+        button.onclick = function ver() {
+            var code = document.all.code.value;
+            if(window.XMLHttpRequest){
+                req = new XMLHttpRequest();
+            }else{
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            req.onreadystatechange = function () {
+                document.getElementsByTagName('div')[0].innerHTML = xmlhttp.responseText;
+            };
+
+            req.open("GET", "/ajax/ajax_info.txt",true);
+            req.send();
+        }
+
+    </script>
+
+</body>
+</html>

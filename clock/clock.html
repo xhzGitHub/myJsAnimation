@@ -9,6 +9,8 @@
     <!--黑底-->
     <div class="wrapper">
         <!--表盘-->
+        <ul class="num-knit"></ul>
+
         <div class="clock">
             <!--装载数字的ul-->
             <ul class="num-box"></ul>
@@ -24,50 +26,75 @@
     </div>
 
     <script>
-        var num_box = document.getElementsByTagName('ul')[0];
+        var num_knit = document.getElementsByClassName('num-knit')[0];
         var str = '';
 
-        // 添加li标签，其中嵌套span标签，标签的内容为数字1-12，表示时钟
-        for(var i = 1; i <= 12; i++){
+        // 添加li标签，其中嵌套span标签，标签的内容为数字12,3,6,9，表示时钟
+        for(var i = 12; i > 0; i-=3){
             str += '<li class="num"><span>' + i + '</span></li>';
         }
-        num_box.innerHTML = str;
+        num_knit.innerHTML = str;
 
         // 为时钟的添加类，以表盘中心为轴，li进行旋转，且在li中嵌套span，
         // 将li中的数字旋转回正
         var num = document.getElementsByTagName('li');
         var span = document.getElementsByTagName('span');
-        for(var i = 0; i < 12; i++){
-            num[i].style.transform = 'rotate(' + 30 * (i + 1) + 'deg)';
-            span[i].style.transform = 'rotate(' + -30 * (i + 1) + 'deg)';
+        for(var i = 0; i < 4; i++){
+            num[i].style.transform = 'rotate(' + 90 * (i * 3) + 'deg)';
+            span[i].style.transform = 'rotate(' + -90 * (i * 3) + 'deg)';
             span[i].style.display = 'inline-block';
         }
 
+        // 在ul下添加60个刻度
+        var num_box = document.getElementsByClassName('num-box')[0];
+        var str2 = '';
 
-        var hour = document.getElementsByClassName('hour')[0],
-            minute = document.getElementsByClassName('minute')[0],
-            second = document.getElementsByClassName('second')[0],
-            date = new Date(),
+        for (var i = 0; i < 60; i++){
+            str2 += '<li class="scale"></li>';
+        }
+        num_box.innerHTML = str2;
+
+        var scale = document.getElementsByClassName('scale');
+        for(var i = 0; i < scale.length; i++){
+            scale[i].style.transform = 'rotate(' + 6 * i + 'deg)';
+        }
+
+
+        // 计算时间
+        var hourDIV = document.getElementsByClassName('hour')[0],
+            minuteDIV = document.getElementsByClassName('minute')[0],
+            secondDIV = document.getElementsByClassName('second')[0];
             //获取当前时间，且小时需要加上分钟数与秒数
-            h = date.getHours(),
-            m = date.getMinutes(),
-            s = date.getSeconds();
-            h = h + m / 60 + s / 3600;
-            hour.style.transform = 'rotate('+ h / 12 * 360 + 'deg)';
-            minute.style.transform = 'rotate('+ m / 60 * 360 + 'deg)';
-            second.style.transform = 'rotate('+ s / 60 * 360 + 'deg)';
+        function gettime() {
+            var newDate = new Date(),
+                hour = newDate.getHours(),
+                minute = newDate.getMinutes(),
+                second = newDate.getSeconds(),
+                mses = newDate.getMilliseconds();
 
-        // 设置定时器，实时旋转
-        var time = setInterval(function () {
-            date = new Date();
-            h = date.getHours();
-            m = date.getMinutes();
-            s = date.getSeconds();
-            h = h + m / 60 + s / 3600;
-            hour.style.transform = 'rotate('+ h / 12 * 360 + 'deg)';
-            minute.style.transform = 'rotate('+ m / 60 * 360 + 'deg)';
-            second.style.transform = 'rotate('+ s / 60 * 360 + 'deg)';
-        },1000)
+            var fillSecond = second + mses / 1000,
+                ds = fillSecond * (360 / 60);   // 每秒的度数
+            secondDIV.style.transform = 'rotate(' + ds + 'deg)';
+
+            var fillMinute = minute + fillSecond / 60,
+                dm = fillMinute * (360 / 60);
+            minuteDIV.style.transform = 'rotate(' + dm + 'deg)';
+
+            var fillHour = hour + fillMinute / 60,
+                dh = fillHour * (360 / 12);
+            hourDIV.style.transform = 'rotate(' + dh + 'deg)';
+
+            // k参数控制哪个刻度执行动画
+            var k = Math.floor(ds / 6);
+            if(k > 59){
+                k = 0;
+            }
+            // 刻度添加动画类
+            scale[k].setAttribute('class','scale changecolor');
+
+            setTimeout(gettime,16.7);   // 浏览器频率是16.7秒刷新一次
+        }
+        gettime();
 
 
     </script>
