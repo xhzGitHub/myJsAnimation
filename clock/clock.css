@@ -4,11 +4,14 @@
     list-style: none;
 }
 
+body{
+    background-color: #26282c;
+}
+
 .wrapper{
-    width: 230px;
-    height: 230px;
-    border-radius: 40px;
-    background-color: #000000;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
     position: relative;
     left: 50%;
     margin: 10%;
@@ -20,7 +23,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-color: #fff;
+    border: 2px solid rgb(201,201,201);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -40,64 +43,119 @@
     top: 0;
     left: 50%;
     width: 30px;
-    height: 30px;
-    line-height: 30px;
+    height: 12px;
+    line-height: 12px;
     margin-left: -15px;
     text-align: center;
-    transform-origin: 15px 100px;
+    transform-origin: 15px 125px;
     color: black;
 }
 
 .num span{
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 16px;
+    color: #545454;
+    display: inline-block;
+}
+
+.scale{
+    width: 3px;
+    height: 10px;
+    background-color: #545454;
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform-origin: 0px 96px;
+    /*transform: rotate(30deg);*/
 }
 
 .radio{
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background-color: #000000;
+    border: 3px solid #ffffff;
+    background-color: #26282c;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -5px;
-    margin-top: -5px;
+    margin-left: -6px;
+    margin-top: -6px;
+    z-index: 2;
 }
 
 .hour{
-    width: 4px;
-    height: 60px;
-    background-color: #000000;
+    width: 6px;
+    height: 55px;
+    background-color: #545454;
     border-radius: 3px;
     position: absolute;
-    left: 100px;
-    top: 40px;
-    margin-left: -2px;
+    left: 50%;
+    top: 45px;
+    margin-left: -3px;
     transform-origin: center bottom;
 }
 
 .minute{
     width: 3px;
-    height: 90px;
-    background-color: #000000;
-    border-radius: 3px;
+    height: 70px;
+    background-color: #ffffff;
+    border-radius: 4px;
     position: absolute;
     left: 100px;
-    top: 10px;
+    top: 30px;
     margin-left: -1.5px;
     transform-origin: center bottom;
 }
 
 .second{
-    width: 2px;
-    height: 90px;
-    background-color: orange;
-    border-radius: 4px;
+    width: 0;
+    height: 0;
+    /*background-color: orange;*/
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid orange;
+    /*border-radius: 4px;*/
     position: absolute;
-    left: 100px;
-    top: 5px;
-    margin-left: -1px;
-    transform-origin: 1px 95px;
+    left: 50%;
+    top: 10px;
+    margin-left: -5px;
+    transform-origin: 5px 90px;
 }
+
+.changecolor{
+    animation-name: cc0, cc1, cc2, cc3, cc4, cc5;
+    animation-duration: 0.8s,0.8s,0.8s,0.8s,0.8s,0.8s;
+    animation-delay: 0s, 0.8s, 1.6s, 2.4s, 3.2s, 4s;
+}
+
+@keyframes cc0{
+    from {background-color: #545454;}
+    to {background-color: #0ebeff;}
+}
+
+@keyframes cc1{
+    from {background-color: #0ebeff;}
+    to {background-color: #ffdd40;}
+}
+
+@keyframes cc2{
+    from {background-color: #ffdd40;}
+    to {background-color: #ae63e4;}
+}
+
+@keyframes cc3{
+    from {background-color: #ae63e4;}
+    to {background-color: #47cf73;}
+}
+
+@keyframes cc4{
+    from {background-color: #47cf73;}
+    to {background-color: #0ebeff;}
+}
+
+@keyframes cc5{
+    from {background-color: #0ebeff;}
+    to {background-color: #545454;}
+}
+
 
