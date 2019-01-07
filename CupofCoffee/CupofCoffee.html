@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CupofCoffee</title>
+    <link rel="stylesheet" href="CupofCoffee.css">
+</head>
+<body>
+    <div class="container">
+        <div class="cup">
+            <div class="cup-shadow"></div>
+            <div class="coffee"></div>
+            <div class="smoke"></div>
+            <div class="smoke2"></div>
+        </div>
+
+        <div class="handle">
+            <div class="handle-shadow"></div>
+        </div>
+
+        <div class="base">
+            <div class="base-shadow"></div>
+        </div>
+    </div>
+
+
+    <script>
+        var cup = document.getElementsByClassName('cup')[0],
+            smoke = document.getElementsByClassName('smoke')[0],
+            coffee = document.getElementsByClassName('coffee')[0];
+
+        cup.onmouseover = function () {
+            coffee.style.display = "block";
+        }
+        cup.onmouseout = function () {
+            coffee.style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

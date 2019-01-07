@@ -6,24 +6,28 @@
     <link rel="stylesheet" href="clock.css">
 </head>
 <body>
-    <!--黑底-->
-    <div class="wrapper">
-        <!--表盘-->
-        <ul class="num-knit"></ul>
+    <div class="bg">
+        <!--黑底-->
+        <div class="wrapper">
+            <!--表盘-->
+            <ul class="num-knit"></ul>
 
-        <div class="clock">
-            <!--装载数字的ul-->
-            <ul class="num-box"></ul>
-            <!--圆心-->
-            <div class="radio"></div>
-            <!--时针-->
-            <div class="hour"></div>
-            <!--分针-->
-            <div class="minute"></div>
-            <!--秒针-->
-            <div class="second"></div>
+            <div class="clock">
+                <!--装载数字的ul-->
+                <ul class="num-box"></ul>
+                <!--圆心-->
+                <div class="radio"></div>
+                <!--时针-->
+                <div class="hour"></div>
+                <!--分针-->
+                <div class="minute"></div>
+                <!--秒针-->
+                <div class="second"></div>
+            </div>
         </div>
     </div>
+
+    <div class="footer"></div>
 
     <script>
         var num_knit = document.getElementsByClassName('num-knit')[0];
@@ -96,6 +100,8 @@
         }
         gettime();
 
+        var warrper = document.getElementsByClassName('wrapper')[0];
+        // warrper.style.height = 1
 
     </script>
 </body>
