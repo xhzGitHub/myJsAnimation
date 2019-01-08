@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,4 +106,107 @@
 
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="clock.css">
+</head>
+<body>
+    <!--黑底-->
+    <div class="wrapper">
+        <!--表盘-->
+        <ul class="num-knit"></ul>
+
+        <div class="clock">
+            <!--装载数字的ul-->
+            <ul class="num-box"></ul>
+            <!--圆心-->
+            <div class="radio"></div>
+            <!--时针-->
+            <div class="hour"></div>
+            <!--分针-->
+            <div class="minute"></div>
+            <!--秒针-->
+            <div class="second"></div>
+        </div>
+    </div>
+
+    <script>
+        var num_knit = document.getElementsByClassName('num-knit')[0];
+        var str = '';
+
+        // 添加li标签，其中嵌套span标签，标签的内容为数字12,3,6,9，表示时钟
+        for(var i = 12; i > 0; i-=3){
+            str += '<li class="num"><span>' + i + '</span></li>';
+        }
+        num_knit.innerHTML = str;
+
+        // 为时钟的添加类，以表盘中心为轴，li进行旋转，且在li中嵌套span，
+        // 将li中的数字旋转回正
+        var num = document.getElementsByTagName('li');
+        var span = document.getElementsByTagName('span');
+        for(var i = 0; i < 4; i++){
+            num[i].style.transform = 'rotate(' + 90 * (i * 3) + 'deg)';
+            span[i].style.transform = 'rotate(' + -90 * (i * 3) + 'deg)';
+            span[i].style.display = 'inline-block';
+        }
+
+        // 在ul下添加60个刻度
+        var num_box = document.getElementsByClassName('num-box')[0];
+        var str2 = '';
+
+        for (var i = 0; i < 60; i++){
+            str2 += '<li class="scale"></li>';
+        }
+        num_box.innerHTML = str2;
+
+        var scale = document.getElementsByClassName('scale');
+        for(var i = 0; i < scale.length; i++){
+            scale[i].style.transform = 'rotate(' + 6 * i + 'deg)';
+        }
+
+
+        // 计算时间
+        var hourDIV = document.getElementsByClassName('hour')[0],
+            minuteDIV = document.getElementsByClassName('minute')[0],
+            secondDIV = document.getElementsByClassName('second')[0];
+            //获取当前时间，且小时需要加上分钟数与秒数
+        function gettime() {
+            var newDate = new Date(),
+                hour = newDate.getHours(),
+                minute = newDate.getMinutes(),
+                second = newDate.getSeconds(),
+                mses = newDate.getMilliseconds();
+
+            var fillSecond = second + mses / 1000,
+                ds = fillSecond * (360 / 60);   // 每秒的度数
+            secondDIV.style.transform = 'rotate(' + ds + 'deg)';
+
+            var fillMinute = minute + fillSecond / 60,
+                dm = fillMinute * (360 / 60);
+            minuteDIV.style.transform = 'rotate(' + dm + 'deg)';
+
+            var fillHour = hour + fillMinute / 60,
+                dh = fillHour * (360 / 12);
+            hourDIV.style.transform = 'rotate(' + dh + 'deg)';
+
+            // k参数控制哪个刻度执行动画
+            var k = Math.floor(ds / 6);
+            if(k > 59){
+                k = 0;
+            }
+            // 刻度添加动画类
+            scale[k].setAttribute('class','scale changecolor');
+
+            setTimeout(gettime,16.7);   // 浏览器频率是16.7秒刷新一次
+        }
+        gettime();
+
+
+    </script>
+</body>
+>>>>>>> 6f4ce1676507c0b3bc0e6dc4efb382d883dd0bdf
 </html>
